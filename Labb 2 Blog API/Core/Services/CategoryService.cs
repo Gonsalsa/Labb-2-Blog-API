@@ -1,23 +1,38 @@
 ﻿using Labb_2_Blog_API.Core.Interface;
 using Labb_2_Blog_API.Data.Enteties;
+using Labb_2_Blog_API.Data.Interfaces;
 
 namespace Labb_2_Blog_API.Core.Services
 {
     public class CategoryService : ICategoryService
     {
-        public Task<bool> AddCategoryAsync(Category category)
+        private readonly ICategoryRepo _categoryRepo;
+
+
+        public async Task<bool> AddCategoryAsync(Category category)
         {
-            throw new NotImplementedException();
+            if (category == null)
+            {
+                return false;
+            }
+
+            if(string.IsNullOrWhiteSpace(category.CategoryName))
+            {
+                return false;
+            }
+
+            await _categoryRepo.AddCategoryAsync(category);
+            return true;
         }
 
-        public Task<List<Category>> GetAllCategoriesAsync()
+        public async Task<List<Category>> GetAllCategoriesAsync()
         {
-            throw new NotImplementedException();
+            return await _categoryRepo.GetAllCategoriesAsync();
         }
 
-        public Task<Category?> GetCategoryByIdAsync(int id)
+        public async Task<Category?> GetCategoryByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _categoryRepo.GetCategoryByIdAsync(id);
         }
     }
 }
