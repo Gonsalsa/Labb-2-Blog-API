@@ -3,12 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Labb_2_Blog_API.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-
-        }
+       
 
         public DbSet<User> Users { get; set; }
         public DbSet<BlogPost> BlogPosts { get; set; }

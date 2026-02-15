@@ -6,7 +6,7 @@ namespace Labb_2_Blog_API.Core.Interface
     public interface IUserService
     {
         //C- Create
-        Task<bool> RegisterNewUserAsync (RegisterUserDTO);
+        Task<bool> RegisterNewUserAsync (RegisterUserDTO dto);
 
         //R- read
         Task<List<User>> GetAllUsersAsync();
